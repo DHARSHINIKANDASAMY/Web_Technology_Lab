@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPA Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 50px;
+            background-image: url("bMI.jpg");
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            width: 50%;
+            margin: auto;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .delete-btn {
+            background-color: red;
+        }
+
+        .delete-btn:hover {
+            background-color: darkred;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>GPA Calculator</h2>
+        <table id="gpaTable">
+            <tr>
+                <th>Subject</th>
+                <th>Grade</th>
+                <th>Credit Hours</th>
+                <th>Action</th>
+            </tr>
+        </table>
+        <button onclick="addRow()">Add Subject</button>
+        <button onclick="calculateGPA()">Calculate GPA</button>
+        <h3 id="result">Your GPA: --</h3>
+    </div>
+
+    <script>
+        function addRow() {
+            let table = document.getElementById("gpaTable");
+            let row = table.insertRow(-1);
+            
+            let cell1 = row.insertCell(0);
+            let cell2 = row.insertCell(1);
+            let cell3 = row.insertCell(2);
+            let cell4 = row.insertCell(3);
+
+            cell1.innerHTML = `<input type="text" placeholder="Subject">`;
+            cell2.innerHTML = `<select>
+                <option value="10">O</option>
+                <option value="9">A+</option>
+                <option value="8">A</option>
+                <option value="7">B+</option>
+                <option value="6">B</option>
+                <option value="5">C+</option>
+                <option value="4">C</option>
+                <option value="3">P</option>
+                <option value="0">F</option>
+                <option value="0">U</option>
+            </select>`;
+            cell3.innerHTML = `<input type="number" min="1" max="5" value="3">`;
+            cell4.innerHTML = `<button class="delete-btn" onclick="deleteRow(this)">❌</button>`;
+        }
+
+        function deleteRow(button) {
+            let row = button.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+        }
+
+        function calculateGPA() {
+            let table = document.getElementById("gpaTable");
+            let rows = table.getElementsByTagName("tr");
+
+            let totalCredits = 0;
+            let totalPoints = 0;
+
+            for (let i = 1; i < rows.length; i++) {
+                let grade = parseFloat(rows[i].cells[1].getElementsByTagName("select")[0].value);
+                let credits = parseFloat(rows[i].cells[2].getElementsByTagName("input")[0].value);
+
+                totalPoints += grade * credits;
+                totalCredits += credits;
+            }
+
+            let gpa = totalCredits > 0 ? (totalPoints / totalCredits).toFixed(2) : 0;
+            document.getElementById("result").innerText = `Your GPA: ${gpa}`;
+        }
+    </script>
+</body>
+</html>
