@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Registration Form</title>
+    <style>
+        body {
+            background-image: url("bg.jpg");
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        .form-container {
+            width: 60%;
+            margin: 50px auto;
+            background-color: rgb(176, 226, 249); /* Light background */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        form {
+            display: block;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            margin-top: 4px;
+            font-size: 14px;
+            border-radius: 4px;
+            border: 1px solid #ece9e9;
+        }
+        textarea {
+            resize: vertical;
+        }
+        button {
+            padding: 8px 12px;
+            margin-right: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            border-radius: 4px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+        }
+        button[type="reset"] {
+            background-color: #f44336;
+        }
+        button:focus {
+            outline: none;
+        }
+        .flex-container {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .flex-container > div {
+            flex: 1;
+            min-width: 180px;
+        }
+        .radio-checkbox-container {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .radio-checkbox-container input,
+        .radio-checkbox-container label {
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+        .radio-checkbox-container label {
+            font-weight: normal;
+        }
+
+        .form-container form > div {
+            margin-bottom: 15px;
+        }
+        .form-container input[type="radio"],
+        .form-container input[type="checkbox"] {
+            width: auto;
+            margin-right: 5px;
+        }
+        .form-container select {
+            width: 100%;
+            padding: 8px;
+        }
+
+        .inline-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px; 
+            align-items: center;
+        }
+
+        .inline-options input {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+
+<body><center>
+    <h1 id="title">College Registration</h1>
+
+<script>
+document.getElementById("title").addEventListener("mouseover", mouseOver);
+document.getElementById("title").addEventListener("mouseout", mouseOut);
+
+function mouseOver() {
+  document.getElementById("title").style.color = "indigo";
+}
+
+function mouseOut() {
+  document.getElementById("title").style.color = "white";
+}
+</script></center>
+
+
+    <div class="form-container">
+        <form>
+
+            <div>
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" name="fullName" required placeholder="Enter full name" onfocus="focusFunction2()" onblur="blurFunction2()">
+            </div>
+
+            <div>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required placeholder="Enter mail id" onfocus="focusFunction3()" onblur="blurFunction3()">
+            </div>
+
+            <div>
+                <label for="address">Address</label>
+                <input type="text" id="address" name="address" required placeholder="Enter your address" onfocus="focusFunction4()" onblur="blurFunction4()">
+            </div>
+
+            <div>
+                <label for="phone">Phone number</label>
+                <input type="tel" id="phone" name="phone" placeholder="10-digit phone number" onfocus="focusFunction5()" onblur="blurFunction5()">
+            </div>
+
+        
+
+            <div>
+                <label for="department">Department</label>
+                <select id="department" name="department" required onfocus="focusFunction7()" onblur="blurFunction7()">
+                    <option value="">Select a department</option>
+                    <option value="Computer Science">Computer Science</option>
+                    <option value="Electrical Engineering">Electrical Engineering</option>
+                    <option value="Mechanical Engineering">Mechanical Engineering</option>
+                    <option value="Civil Engineering">Civil Engineering</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Gender</label>
+                <div class="inline-options">
+                    <input type="radio" id="M" name="gender" value="Male">
+                    <label for="M">Male</label>
+                    <input type="radio" id="F" name="gender" value="Female">
+                    <label for="F">Female</label>
+                    <input type="radio" id="other" name="gender" value="Other">
+                    <label for="other">Other</label>
+                </div>
+            </div>
+
+            <div>
+                <label for="dob">Date of Birth</label>
+                <input type="date" id="dob" name="dob" required onfocus="focusFunction8()" onblur="blurFunction8()">
+            </div>
+
+    
+
+            <div>
+                <label for="comments">Additional Comments</label>
+                <textarea id="comments" name="comments" rows="4" placeholder="Enter any additional information or requests" onfocus="focusFunction9()" onblur="blurFunction9()"></textarea>
+            </div>
+
+            <div style="text-align: center;">
+                <button onclick="myFunction()" type="submit">Register</button>
+                <p id="click"></p>
+                <script>
+                    function myFunction() {
+                        document.getElementById("click").innerHTML = "Thank you for your registration!";
+                    }
+                </script>
+                <button type="reset">Reset</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+    // Focus and blur functions
+    function focusFunction1() {
+        document.getElementById("studentID").style.background = "pink";
+    }
+
+    function blurFunction1() {
+        document.getElementById("studentID").style.background = "white";
+        if (!(document.getElementById("studentID").value)) {
+            alert("Student ID should not be empty");
+            console.log("Alert dismissed, now running the next code...");
+        }
+    }
+
+    function focusFunction2() {
+        document.getElementById("fullName").style.background = "pink";
+    }
+
+    function blurFunction2() {
+        document.getElementById("fullName").style.background = "white";
+         if(!(document.getElementById("fullName").value)) {
+            alert("Full Name field should not be empty");
+        }
+    }
+
+    function focusFunction3() {
+        document.getElementById("email").style.background = "pink";
+    }
+
+    function blurFunction3() {
+        document.getElementById("email").style.background = "white";
+        if (!(document.getElementById("email").value)) {
+            alert("Email field should not be empty");
+        }
+    }
+
+    function focusFunction4() {
+        document.getElementById("address").style.background = "pink";
+    }
+
+    function blurFunction4() {
+        document.getElementById("address").style.background = "white";
+        /*if (!(document.getElementById("address").value)) {
+            alert("Address field should not be empty");
+        }*/
+    }
+
+    function focusFunction5() {
+        document.getElementById("phone").style.background = "pink";
+    }
+
+    function blurFunction5() {
+        document.getElementById("phone").style.background = "white";
+        /*if (!(document.getElementById("phone").value)) {
+            alert("Phone field should not be empty");
+        }*/
+    }
+
+
+    function focusFunction7() {
+        document.getElementById("department").style.background = "pink";
+    }
+
+    function blurFunction7() {
+        document.getElementById("department").style.background = "white";
+        /*if (!(document.getElementById("department").value)) {
+            alert("Department field should not be empty");
+        }*/
+    }
+
+    function focusFunction8() {
+        document.getElementById("dob").style.background = "pink";
+    }
+
+    function blurFunction8() {
+        document.getElementById("dob").style.background = "white";
+       /* if (!(document.getElementById("dob").value)) {
+            alert("Date of Birth field should not be empty");
+        }*/
+    }
+
+    function focusFunction9() {
+        document.getElementById("comments").style.background = "pink";
+    }
+
+    function blurFunction9() {
+        document.getElementById("comments").style.background = "white";
+    }
+
+    document.getElementById('applicationForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const studentID = document.getElementById('studentID').value;
+        const fullName = document.getElementById('fullName').value;
+        const email = document.getElementById('email').value;
+        const address = document.getElementById('address').value;
+        const phone = document.getElementById('phone').value;
+        //const semester = document.getElementById('semester').value;
+        const department = document.getElementById('department').value;
+        const gender = document.querySelector('input[name="gender"]:checked');
+        const dob = document.getElementById('dob').value;
+
+        const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        const phonePattern = /^[0-9]{10}$/;
+
+        if (!studentID || !fullName || !email || !address || !phone || !semester || !department || !gender || !dob) {
+            alert("Please fill in all required fields.");
+            return;
+        }
+
+        if (!emailPattern.test(email)) {
+            alert("Please enter a valid email address.");
+            return;
+        }
+
+        if (!phonePattern.test(phone.trim())) {
+            alert("Please enter a valid 10-digit phone number.");
+            return;
+        }
+
+        alert("Registration submitted successfully!");
+        this.submit();
+    });
+
+    </script>
+</body>
+</html>
